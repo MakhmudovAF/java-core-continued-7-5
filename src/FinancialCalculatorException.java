@@ -7,7 +7,7 @@ public class FinancialCalculatorException {
         try {
             calculate();
         } catch (LimitException e) {
-            System.out.println("Превышен лимит ошибок ввода: " + e.getAttempts());
+            System.out.println(e.getDetailMessage());
         }
     }
 
@@ -23,14 +23,14 @@ public class FinancialCalculatorException {
                 try {
                     final int value = Integer.parseInt(scanner.nextLine());
                     if (value < 0) {
-                        throw new InputException("Введено отрицательное значение");
+                        throw new InputException("Введено отрицательное значение!");
                     }
                     return value;
                 } catch (NumberFormatException exception) {
                     throw new InputException("Введено не число");
                 }
             } catch (InputException exception) {
-                System.out.println("Ошибка ввода: " + exception.getMessage());
+                System.out.println(exception.getDetailMessage());
             }
         }
         throw new LimitException("Превышен лимит ошибок ввода", attempts);
@@ -50,7 +50,7 @@ public class FinancialCalculatorException {
                     throw new InputException("Введено не число");
                 }
             } catch (InputException exception) {
-                System.out.println("Ошибка ввода: " + exception.getMessage());
+                System.out.println(exception.getDetailMessage());
             }
         }
         throw new LimitException("Превышен лимит ошибок ввода", attempts);
